@@ -1,6 +1,7 @@
 package cn.hdy.xiaohashu.auth.service;
 
 import cn.hdy.framework.common.response.Response;
+import cn.hdy.xiaohashu.auth.model.vo.user.UpdatePasswordReqVO;
 import cn.hdy.xiaohashu.auth.model.vo.user.UserLoginReqVO;
 
 /**
@@ -18,4 +19,18 @@ public interface UserService {
      * @return
      */
     Response<String> loginAndRegister(UserLoginReqVO userLoginReqVO);
+
+
+    /**
+     * 退出登录
+     * @return
+     */
+    Response<?> logout();
+
+    /**
+     * 修改密码
+     * @param updatePasswordReqVO
+     * @return
+     */
+    Response<?> updatePassword(UpdatePasswordReqVO updatePasswordReqVO);
 }

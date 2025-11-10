@@ -2,6 +2,7 @@ package cn.hdy.xiaohashu.auth.controller;
 
 import cn.hdy.framework.biz.operationlog.aspect.ApiOperationLog;
 import cn.hdy.framework.common.response.Response;
+import cn.hdy.xiaohashu.auth.model.vo.user.UpdatePasswordReqVO;
 import cn.hdy.xiaohashu.auth.model.vo.user.UserLoginReqVO;
 import cn.hdy.xiaohashu.auth.service.UserService;
 import jakarta.annotation.Resource;
@@ -30,5 +31,17 @@ public class UserController {
     @ApiOperationLog(description = "用户登录/用户注册")
     public Response<String> loginAndRegister(@Validated @RequestBody UserLoginReqVO userLoginReqVO) {
         return userService.loginAndRegister(userLoginReqVO);
+    }
+
+    @PostMapping("/logout")
+    @ApiOperationLog(description = "账号登出")
+    public Response<?> logout() {
+        return userService.logout();
+    }
+
+    @PostMapping("/password/update")
+    @ApiOperationLog(description = "修改密码")
+    public Response<?> updatePassword(@Validated @RequestBody UpdatePasswordReqVO updatePasswordReqVO) {
+        return userService.updatePassword(updatePasswordReqVO);
     }
 }
