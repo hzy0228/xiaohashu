@@ -1,5 +1,6 @@
 package cn.hdy.xiaohashu.oss.biz.controller;
 
+import cn.hdy.framework.biz.context.holder.LoginUserContextHolder;
 import cn.hdy.framework.common.response.Response;
 import cn.hdy.xiaohashu.oss.biz.service.FileService;
 import io.minio.errors.*;
@@ -32,6 +33,7 @@ public class FileController {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Response<?> uploadFile(@RequestPart(value = "file") MultipartFile file) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
-        return  fileService.uploadFile(file);
+        log.info("当前用户 ID ：{}", LoginUserContextHolder.getUserId());
+        return fileService.uploadFile(file);
     }
 }

@@ -1,1 +1,2 @@
 cn.hdy.framework.biz.context.config.ContextAutoConfiguration
+cn.hdy.framework.biz.context.config.FeignContextAutoConfiguration
