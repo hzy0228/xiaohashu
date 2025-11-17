@@ -23,7 +23,10 @@
         <module>xiaohashu-gateway</module>
         <!-- 对象存储服务 -->
         <module>xiaohashu-oss</module>
+        <!-- 用户服务 -->
         <module>xiaohashu-user</module>
+        <!-- KV 键值存储服务 -->
+        <module>xiaohashu-kv</module>
     </modules>
 
     <properties>
@@ -252,6 +255,13 @@
                 <artifactId>xiaohashu-user-api</artifactId>
                 <version>${revision}</version>
             </dependency>
+
+            <dependency>
+                <groupId>cn.hdy</groupId>
+                <artifactId>xiaohashu-kv-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
