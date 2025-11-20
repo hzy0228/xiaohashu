@@ -101,6 +101,12 @@
             <artifactId>xiaohashu-user-api</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cn.hdy</groupId>
+            <artifactId>xiaohashu-distributed-id-generator-api</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <build>

@@ -27,6 +27,7 @@
         <module>xiaohashu-user</module>
         <!-- KV 键值存储服务 -->
         <module>xiaohashu-kv</module>
+        <module>xiaohashu-distributed-id-generator</module>
     </modules>
 
     <properties>
@@ -261,6 +262,13 @@
                 <artifactId>xiaohashu-kv-api</artifactId>
                 <version>${revision}</version>
             </dependency>
+
+            <dependency>
+                <groupId>cn.hdy</groupId>
+                <artifactId>xiaohashu-distributed-id-generator-api</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>

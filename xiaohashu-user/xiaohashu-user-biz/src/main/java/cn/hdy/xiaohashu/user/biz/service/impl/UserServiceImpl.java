@@ -18,6 +18,7 @@ import cn.hdy.xiaohashu.user.biz.domain.mapper.UserRoleDOMapper;
 import cn.hdy.xiaohashu.user.biz.enums.ResponseCodeEnum;
 import cn.hdy.xiaohashu.user.biz.enums.SexEnum;
 import cn.hdy.xiaohashu.user.biz.model.vo.UpdateUserInfoReqVO;
+import cn.hdy.xiaohashu.user.biz.rpc.DistributedIdGeneratorRpcService;
 import cn.hdy.xiaohashu.user.biz.rpc.OssRpcService;
 import cn.hdy.xiaohashu.user.biz.service.UserService;
 import cn.hdy.xiaohashu.user.dto.req.FindUserByPhoneReqDTO;
@@ -30,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
@@ -62,6 +64,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
+
+    @Resource
+    private DistributedIdGeneratorRpcService distributedIdGeneratorRpcService;
 
     /**
      * 更新用户信息
@@ -164,6 +169,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Response<Long> register(RegisterUserReqDTO registerUserReqDTO) {
         String phone = registerUserReqDTO.getPhone();
 
@@ -174,13 +180,18 @@ public class UserServiceImpl implements UserService {
         if (Objects.nonNull(userDO1)) {
             return Response.success(userDO1.getId());
         }
-        // 否则注册新用户
-        // 获取全局自增的小哈书 ID
-        Long xiaohashuId = redisTemplate.opsForValue().increment(RedisKeyConstants.XIAOHASHU_ID_GENERATOR_KEY);
 
+        // 否则注册新用户
+        // RPC: 调用分布式 ID 生成服务生成小哈书 ID
+        String xiaohashuId = distributedIdGeneratorRpcService.getXiaohashuId();
+
+        // RPC: 调用分布式 ID 生成服务生成用户 ID
+        String userIdStr = distributedIdGeneratorRpcService.getUserId();
+        Long userId = Long.valueOf(userIdStr);
         UserDO userDO = UserDO.builder()
+                .id(userId)
                 .phone(phone)
-                .xiaohashuId(String.valueOf(xiaohashuId)) // 自动生成小红书号 ID
+                .xiaohashuId(xiaohashuId) // 自动生成小红书号 ID
                 .nickname("小红薯" + xiaohashuId) // 自动生成昵称, 如：小红薯10000
                 .status(StatusEnum.ENABLE.getValue()) // 状态为启用
                 .createTime(LocalDateTime.now())
@@ -192,7 +203,7 @@ public class UserServiceImpl implements UserService {
         userDOMapper.insert(userDO);
 
         // 获取刚刚添加入库的用户 ID
-        Long userId = userDO.getId();
+        // Long userId = userDO.getId();
 
         // 给该用户分配一个默认角色
         UserRoleDO userRoleDO = UserRoleDO.builder()
