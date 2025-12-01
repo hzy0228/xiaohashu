@@ -2,9 +2,11 @@ package cn.hdy.xiaohashu.user.biz.service;
 
 import cn.hdy.framework.common.response.Response;
 import cn.hdy.xiaohashu.user.biz.model.vo.UpdateUserInfoReqVO;
+import cn.hdy.xiaohashu.user.dto.req.FindUserByIdReqDTO;
 import cn.hdy.xiaohashu.user.dto.req.FindUserByPhoneReqDTO;
 import cn.hdy.xiaohashu.user.dto.req.RegisterUserReqDTO;
 import cn.hdy.xiaohashu.user.dto.req.UpdateUserPasswordReqDTO;
+import cn.hdy.xiaohashu.user.dto.resp.FindUserByIdRspDTO;
 import cn.hdy.xiaohashu.user.dto.resp.FindUserByPhoneRspDTO;
 
 /**
@@ -46,4 +48,13 @@ public interface UserService {
      * @return
      */
     Response<?> updatePassword(UpdateUserPasswordReqDTO updateUserPasswordReqDTO);
+
+
+    /**
+     * 根据用户 ID 查询用户信息
+     *
+     * @param findUserByIdReqDTO
+     * @return
+     */
+    Response<FindUserByIdRspDTO> findById(FindUserByIdReqDTO findUserByIdReqDTO);
 }

@@ -4,9 +4,11 @@ import cn.hdy.framework.biz.operationlog.aspect.ApiOperationLog;
 import cn.hdy.framework.common.response.Response;
 import cn.hdy.xiaohashu.user.biz.model.vo.UpdateUserInfoReqVO;
 import cn.hdy.xiaohashu.user.biz.service.UserService;
+import cn.hdy.xiaohashu.user.dto.req.FindUserByIdReqDTO;
 import cn.hdy.xiaohashu.user.dto.req.FindUserByPhoneReqDTO;
 import cn.hdy.xiaohashu.user.dto.req.RegisterUserReqDTO;
 import cn.hdy.xiaohashu.user.dto.req.UpdateUserPasswordReqDTO;
+import cn.hdy.xiaohashu.user.dto.resp.FindUserByIdRspDTO;
 import cn.hdy.xiaohashu.user.dto.resp.FindUserByPhoneRspDTO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -68,6 +70,7 @@ public class UserController {
 
     /**
      * 密码更新
+     *
      * @param updateUserPasswordReqDTO
      * @return
      */
@@ -77,4 +80,16 @@ public class UserController {
         return userService.updatePassword(updateUserPasswordReqDTO);
     }
 
+
+    /**
+     * 查询用户信息
+     *
+     * @param findUserByIdReqDTO
+     * @return
+     */
+    @PostMapping("/findById")
+    @ApiOperationLog(description = "查询用户信息")
+    public Response<FindUserByIdRspDTO> findById(@Validated @RequestBody FindUserByIdReqDTO findUserByIdReqDTO) {
+        return userService.findById(findUserByIdReqDTO);
+    }
 }

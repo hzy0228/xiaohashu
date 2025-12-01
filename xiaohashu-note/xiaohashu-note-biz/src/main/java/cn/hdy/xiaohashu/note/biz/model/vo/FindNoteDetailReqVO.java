@@ -1,6 +1,6 @@
-package cn.hdy.xiaohashu.kv.dto.req;
+package cn.hdy.xiaohashu.note.biz.model.vo;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @Author: hao-zhao-yu
- * @Date: 2025/11/17 9:12
+ * @Date: 2025/11/28 11:11
  * @Version: v1.0.0
  * @Description: TODO
  **/
@@ -16,9 +16,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DeleteNoteContentReqDTO {
+public class FindNoteDetailReqVO {
 
-    @NotBlank(message = "笔记内容 UUID 不能为空")
-    private String uuid;
-
+    @NotNull(message = "笔记 ID 不能为空")
+    private Long id;
 }

@@ -3,63 +3,22 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.hdy</groupId>
-        <artifactId>xiaohashu-user</artifactId>
+        <artifactId>xiaohashu-note</artifactId>
         <version>${revision}</version>
     </parent>
 
     <!-- 打包方式 -->
     <packaging>jar</packaging>
 
-    <artifactId>xiaohashu-user-biz</artifactId>
+    <artifactId>xiaohashu-note-biz</artifactId>
     <name>${project.artifactId}</name>
-    <description>用户服务业务模块</description>
+    <description>笔记服务业务层</description>
 
     <dependencies>
         <dependency>
             <groupId>cn.hdy</groupId>
             <artifactId>xiaoha-common</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
-
-        <!-- 服务发现 -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
-
-        <!-- Mybatis -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
-
-        <!-- MySQL 驱动 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
-        <!-- Druid 数据库连接池 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-3-starter</artifactId>
-        </dependency>
-
 
         <!-- 业务接口日志组件 -->
         <dependency>
@@ -80,8 +39,43 @@
         </dependency>
 
         <dependency>
-            <groupId>cn.hdy</groupId>
-            <artifactId>xiaohashu-oss-api</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Mybatis -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- MySQL 驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <!-- Druid 数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-3-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <!-- 服务发现 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
         <!-- Redis -->
@@ -98,12 +92,17 @@
 
         <dependency>
             <groupId>cn.hdy</groupId>
-            <artifactId>xiaohashu-user-api</artifactId>
+            <artifactId>xiaohashu-distributed-id-generator-api</artifactId>
         </dependency>
 
         <dependency>
             <groupId>cn.hdy</groupId>
-            <artifactId>xiaohashu-distributed-id-generator-api</artifactId>
+            <artifactId>xiaohashu-kv-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hdy</groupId>
+            <artifactId>xiaohashu-user-api</artifactId>
         </dependency>
 
         <!-- Caffeine 本地缓存 -->
@@ -111,7 +110,6 @@
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
         </dependency>
-
 
     </dependencies>
 
@@ -121,13 +119,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
             <!-- 代码生成器 -->
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
             </plugin>
-
         </plugins>
     </build>
 </project>
