@@ -1,10 +1,7 @@
 package cn.hdy.xiaohashu.note.biz.service;
 
 import cn.hdy.framework.common.response.Response;
-import cn.hdy.xiaohashu.note.biz.model.vo.FindNoteDetailReqVO;
-import cn.hdy.xiaohashu.note.biz.model.vo.FindNoteDetailRspVO;
-import cn.hdy.xiaohashu.note.biz.model.vo.PublishNoteReqVO;
-import cn.hdy.xiaohashu.note.biz.model.vo.UpdateNoteReqVO;
+import cn.hdy.xiaohashu.note.biz.model.vo.*;
 
 /**
  * @Author: hao-zhao-yu
@@ -39,4 +36,35 @@ public interface NoteService {
      * @return
      */
     Response<?> updateNote(UpdateNoteReqVO updateNoteReqVO);
+
+    /**
+     * 删除本地笔记缓存
+     *
+     * @param noteId
+     */
+    void deleteNoteLocalCache(Long noteId);
+
+
+    /**
+     * 笔记删除
+     *
+     * @param deleteNoteReqVO
+     * @return
+     */
+    Response<?> deleteNote(DeleteNoteReqVO deleteNoteReqVO);
+
+    /**
+     * 笔记仅对自己可见
+     *
+     * @param updateNoteVisibleOnlyMeReqVO
+     * @return
+     */
+    Response<?> visibleOnlyMe(UpdateNoteVisibleOnlyMeReqVO updateNoteVisibleOnlyMeReqVO);
+
+    /**
+     * 笔记置顶 / 取消置顶
+     * @param topNoteReqVO
+     * @return
+     */
+    Response<?> topNote(TopNoteReqVO topNoteReqVO);
 }

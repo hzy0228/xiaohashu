@@ -2,10 +2,7 @@ package cn.hdy.xiaohashu.note.biz.controller;
 
 import cn.hdy.framework.biz.operationlog.aspect.ApiOperationLog;
 import cn.hdy.framework.common.response.Response;
-import cn.hdy.xiaohashu.note.biz.model.vo.FindNoteDetailReqVO;
-import cn.hdy.xiaohashu.note.biz.model.vo.FindNoteDetailRspVO;
-import cn.hdy.xiaohashu.note.biz.model.vo.PublishNoteReqVO;
-import cn.hdy.xiaohashu.note.biz.model.vo.UpdateNoteReqVO;
+import cn.hdy.xiaohashu.note.biz.model.vo.*;
 import cn.hdy.xiaohashu.note.biz.service.NoteService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -50,4 +47,22 @@ public class NoteController {
         return noteService.updateNote(updateNoteReqVO);
     }
 
+    @PostMapping(value = "/delete")
+    @ApiOperationLog(description = "删除笔记")
+    public Response<?> deleteNote(@Validated @RequestBody DeleteNoteReqVO deleteNoteReqVO) {
+        return noteService.deleteNote(deleteNoteReqVO);
+    }
+
+
+    @PostMapping(value = "/visible/onlyme")
+    @ApiOperationLog(description = "笔记仅对自己可见")
+    public Response<?> visibleOnlyMe(@Validated @RequestBody UpdateNoteVisibleOnlyMeReqVO updateNoteVisibleOnlyMeReqVO) {
+        return noteService.visibleOnlyMe(updateNoteVisibleOnlyMeReqVO);
+    }
+
+    @PostMapping(value = "/top")
+    @ApiOperationLog(description = "置顶/取消置顶笔记")
+    public Response<?> topNote(@Validated @RequestBody TopNoteReqVO topNoteReqVO) {
+        return noteService.topNote(topNoteReqVO);
+    }
 }
