@@ -1,0 +1,24 @@
+package cn.hdy.xiaohashu.user.relation.biz.constant;
+
+/**
+ * @Author: hao-zhao-yu
+ * @Date: 2025/11/29 9:22
+ * @Version: v1.0.0
+ * @Description: TODO
+ **/
+public class RedisKeyConstants {
+
+    /**
+     * 关注列表 KEY 前缀
+     */
+    private static final String USER_FOLLOWING_KEY_PREFIX = "following:";
+
+    /**
+     * 构建关注列表完整的 KEY
+     * @param userId
+     * @return
+     */
+    public static String buildUserFollowingKey(Long userId) {
+        return USER_FOLLOWING_KEY_PREFIX + userId;
+    }
+}
