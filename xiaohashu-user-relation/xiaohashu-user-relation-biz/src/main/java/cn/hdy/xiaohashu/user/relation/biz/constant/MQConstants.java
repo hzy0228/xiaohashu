@@ -9,15 +9,18 @@ package cn.hdy.xiaohashu.user.relation.biz.constant;
 public interface MQConstants {
 
     /**
-     * Topic 主题：删除笔记本地缓存
+     * Topic: 关注、取关共用一个
      */
-    String TOPIC_DELETE_NOTE_LOCAL_CACHE = "DeleteNoteLocalCacheTopic";
-
+    String TOPIC_FOLLOW_OR_UNFOLLOW = "FollowUnfollowTopic";
 
     /**
-     * Topic 主题：延迟双删 Redis 笔记缓存
+     * 关注标签
      */
-    String TOPIC_DELAY_DELETE_NOTE_REDIS_CACHE = "DelayDeleteNoteRedisCacheTopic";
+    String TAG_FOLLOW = "Follow";
 
+    /**
+     * 取关标签
+     */
+    String TAG_UNFOLLOW = "Unfollow";
 
 }
